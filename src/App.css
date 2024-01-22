@@ -1,38 +1,220 @@
+body {
+
+  width: 100vw;
+  overflow-x: hidden;
+
+}
+
 .App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  --main-color: white;
+  --extra-color: rgba(0, 0, 0, 0.205);
+  --text-color: black;
+  --button-color: rgb(0, 119, 255);
+  --button-del-color: rgb(255, 0, 55);
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  width: 100vw;
+  padding-top: 2vw;
+  color: var(--text-color);
+  background-color: var(--main-color);
+
 }
 
-.App-link {
-  color: #61dafb;
+.App.dark {
+
+  --main-color: rgb(21, 21, 21);
+  --extra-color: white;
+  --text-color: white;
+  --button-color: rgb(131, 131, 131);
+  --button-del-color: rgb(81, 81, 81);
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Form {
+
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  padding: 0.5vw 0vw;
+  height: 30vh;
+  box-shadow: 0px 0px 5px 0px var(--extra-color);
+  border-radius: 1vw;
+  align-items: center;
+
+}
+
+.Form.errorRed {
+
+  box-shadow: 0px 0px 5px 0px var(--button-del-color);
+
+}
+
+.Form textarea {
+
+  border: none;
+  width: 90%;
+  height: 72%;
+  resize: none;
+  font-size: 1vw;
+  margin-top: 0.8vw;
+  background-color: var(--main-color);
+  color: var(--text-color);
+
+}
+
+.Form textarea:focus-visible {
+
+  outline: none;
+
+}
+
+.Form button {
+
+  background-color: var(--button-color);
+  color: var(--main-color);
+  border: none;
+  width: 20vw;
+  height: 2vw;
+  margin-top: 1vw;
+  border-radius: 0.2vw;
+  cursor: pointer;
+
+}
+
+.Form button:hover {
+
+  opacity: 0.8;
+
+}
+
+.TaskList {
+
+  margin-top: 1vw;
+
+}
+
+.Task {
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 35vw;
+  height: fit-content;
+  padding: 1vw 2.5vw;
+  box-shadow: 0px 0px 5px 0px var(--extra-color);
+  border-radius: 1vw;
+  margin-top: 1vw;
+
+}
+
+.Task p {
+
+  width: 25vw;
+
+}
+
+.Task div {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 8vw;
+
+}
+
+.Task button {
+
+  background-color: var(--button-color);
+  color: var(--main-color);
+  border: none;
+  width: 8vw;
+  height: 2vw;
+  margin-top: 1vw;
+  border-radius: 0.2vw;
+  cursor: pointer;
+
+}
+
+.Task button:last-of-type {
+
+  background-color: var(--button-del-color);
+
+}
+
+.Task button:hover {
+
+  opacity: 0.6;
+
+}
+
+.FilterButtonsContain {
+
+  display: flex;
+  flex-direction: row;
+
+}
+
+.FilterButtonsContain button {
+
+  background-color: var(--main-color);
+  border: 3px solid var(--button-color);
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  color: var(--button-color);
+  width: 8vw;
+  height: 2vw;
+  margin-top: 1vw;
+  border-radius: 0.4vw;
+  cursor: pointer;
+
+}
+
+.FilterButtonsContain button:hover {
+
+  background-color: var(--button-color);
+  color: var(--main-color);
+
+}
+
+.FilterButtonsContain button.active {
+
+  background-color: var(--button-color);
+  color: var(--main-color);
+
+}
+
+.Time {
+
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+
+}
+
+.ThemeButton {
+
+  position: fixed;
+  bottom: 1vw;
+  right: 1vw;
+  padding: 0.5vw 1vw;
+  cursor: pointer;
+  color: var(--button-color);
+  background-color: var(--main-color);
+  border: solid 2px var(--button-color);
+  border-radius: 0.4vw;
+
+}
+
+.ThemeButton:hover {
+
+  color: var(--main-color);
+  background-color: var(--button-color);
+
 }

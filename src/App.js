@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+import { useState, useMemo } from 'react';
 import './App.css';
+import { Form } from './Components/Form/Form';
+import { useSelector } from 'react-redux';
+import { Clock } from './Components/Clock/Clock';
+import { useTheme } from './Hooks/useTheme';
+import TaskList from './Components/TaskList/TaskList';
 
 function App() {
+
+  const [status, setStatus] = useState('all');
+  const [theme, changeTheme] = useTheme();
+
+  const taskList = useSelector((state) => state.tasks['tasks']);
+
+  const taskListFiltered = useMemo(() => taskList.filter((element) => {
+    console.log(1);
+    return status === 'all' ? true :
+      element.status === status ? true : false;
+  }), [taskList, status]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={theme === 'light' ? 'App' : 'App dark'}>
+      <Form />
+      <Clock />
+      <button
+        onClick={changeTheme}
+        className="ThemeButton">
+        Сменить тему
+      </button>
+
+      <div className="FilterButtonsContain">
+        <button
+          className={status === 'all' ? 'active' : ''}
+          onClick={() => setStatus('all')}>Все задачи</button>
+        <button
+          className={status === 'new' ? 'active' : ''}
+          onClick={() => setStatus('new')}>Активные</button>
+        <button
+          className={status === 'complete' ? 'active' : ''}
+          onClick={() => setStatus('complete')}>Выполненные</button>
+        <button
+          className={status === 'cancel' ? 'active' : ''}
+          onClick={() => setStatus('cancel')}>Отмененные</button>
+      </div>
+
+      <TaskList taskList={taskListFiltered} />
     </div>
   );
 }
